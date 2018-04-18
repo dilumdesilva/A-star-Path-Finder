@@ -17,15 +17,18 @@ import java.util.logging.Logger;
  */
 public class mouseInteraction implements Runnable {
     
-     boolean pressedOnce = false;
-
-    //to track the mouse events such as user's mouse clicks.
+    private boolean pressedOnce = false;
+    private int N;
+    public mouseInteraction(int N){
+        this.N = N;
+    }
+    
     @Override
     public void run() {
         while (true) {
             if (StdDraw.mousePressed()) {
                 if (!pressedOnce) {
-                    pathFinder.captureMouseClick((StdDraw.mouseX()), (20 - StdDraw.mouseY()));
+                    pathFinder.mouseClicked((StdDraw.mouseX()), (N - StdDraw.mouseY()));
                     pressedOnce = true;
                 }
             } else {
@@ -38,7 +41,5 @@ public class mouseInteraction implements Runnable {
             }
         }
     }
-    
-   
     
 }

@@ -211,7 +211,7 @@ public class gridSelectionScreen extends javax.swing.JFrame {
         
         pathFinder pathFinder = new pathFinder();
         this.dispose();
-        pathFinder.pathFinderMain(mapType);
+        //pathFinder.pathFinderMain(mapType);
         
         
         

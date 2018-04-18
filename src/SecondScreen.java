@@ -158,7 +158,7 @@ public class SecondScreen extends javax.swing.JFrame {
 
         pathFinder pathFinder = new pathFinder();
         this.dispose();
-        pathFinder.pathFinderMain(mapType);
+        //pathFinder.pathFinderMain(mapType);
     }//GEN-LAST:event_btnGenerateMapActionPerformed
 
     private void rBtnChebyshevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnChebyshevActionPerformed
