@@ -33,6 +33,8 @@ public class cell {
         } else {
             this.totTravelCost = 0;
         }
+        
+        
         this.h_cost = Math.sqrt(Math.pow((this.x - endCell.x), 2) + Math.pow((this.y - endCell.y), 2));
         
         System.out.println(" (" + this.x + " " + this.y + ")" +" (" + endCell.x + " " + endCell.y + ") : " +this.h_cost + " - "+this.totTravelCost);

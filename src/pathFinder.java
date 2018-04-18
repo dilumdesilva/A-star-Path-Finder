@@ -48,7 +48,7 @@ public class pathFinder {
         {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},//13
         {4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 5},//14
         {1, 1, 4, 4, 4, 4, 1, 1, 1, 2, 2, 5, 5, 1, 1, 1, 1, 1, 1, 5},//15
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 5, 1, 1, 1, 5, 5, 5},//16
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 5, 5, 1, 1, 5, 5, 5},//16
         {1, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5},//17
         {2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5},//18
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5},//19
@@ -58,6 +58,7 @@ public class pathFinder {
     private static void run() {
 
         boolean[][] visited = new boolean[20][20];
+        
         // Proirity queue to get the cell with least weight
         open = new PriorityQueue(new Comparator() {
             @Override
@@ -93,8 +94,10 @@ public class pathFinder {
             addCell(x - 1, y - 1, currentCell);
             addCell(x - 1, y, currentCell);
             addCell(x - 1, y + 1, currentCell);
+            
             addCell(x, y - 1, currentCell);
             addCell(x, y + 1, currentCell);
+            
             addCell(x + 1, y - 1, currentCell);
             addCell(x + 1, y, currentCell);
             addCell(x + 1, y + 1, currentCell);
