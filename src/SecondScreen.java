@@ -1,6 +1,5 @@
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,8 +11,8 @@ import javax.swing.JLabel;
  *
  * @author dilumdesilva
  */
-public class gridSelectionScreen extends javax.swing.JFrame {
-
+public class SecondScreen extends javax.swing.JFrame {
+    
     //String variables to hold the path of the images
     ///Users/dilumdesilva/Workspaces/IIT_Workspace/Algorithms/CW/ThirdAttempt/PathFinder/src/images/mapPic.png
     String pictureMap_path = "src/images/mapPic.png";
@@ -26,13 +25,11 @@ public class gridSelectionScreen extends javax.swing.JFrame {
     
     int selectedDistanceMetrics = 0;
     boolean rBtnEuclideanClicked, rBtnManhattanClicked, rBtnChebyshevClicked  = false;
-    
-    
-    
+
     /**
-     * Creates new form gridSelectionScreen
+     * Creates new form SeconScreen
      */
-    public gridSelectionScreen() {
+    public SecondScreen() {
         initComponents();
     }
 
@@ -47,29 +44,27 @@ public class gridSelectionScreen extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnRight = new javax.swing.JLabel();
-        btnLeft = new javax.swing.JLabel();
         lblMapImage = new javax.swing.JLabel();
-        btnGenerateMap = new javax.swing.JButton();
+        btnLeft = new javax.swing.JLabel();
         rBtnManhattan = new javax.swing.JRadioButton();
+        btnRight = new javax.swing.JLabel();
         rBtnEuclidean = new javax.swing.JRadioButton();
         rBtnChebyshev = new javax.swing.JRadioButton();
+        btnGenerateMap = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(13, 127, 137));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Please select your preference map & distance metric");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 44, -1, -1));
 
-        btnRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
-        btnRight.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRightMouseClicked(evt);
-            }
-        });
+        lblMapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        jPanel1.add(lblMapImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 118, -1, -1));
 
         btnLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_left.png"))); // NOI18N
         btnLeft.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,8 +72,42 @@ public class gridSelectionScreen extends javax.swing.JFrame {
                 btnLeftMouseClicked(evt);
             }
         });
+        jPanel1.add(btnLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 175, -1, -1));
 
-        lblMapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        rBtnManhattan.setForeground(new java.awt.Color(255, 255, 255));
+        rBtnManhattan.setText("Manhattan");
+        rBtnManhattan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBtnManhattanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rBtnManhattan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
+
+        btnRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
+        btnRight.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRightMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, -1, -1));
+
+        rBtnEuclidean.setForeground(new java.awt.Color(255, 255, 255));
+        rBtnEuclidean.setText("Euclidean");
+        rBtnEuclidean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBtnEuclideanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rBtnEuclidean, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
+
+        rBtnChebyshev.setForeground(new java.awt.Color(255, 255, 255));
+        rBtnChebyshev.setText("Chebyshev");
+        rBtnChebyshev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBtnChebyshevActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rBtnChebyshev, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
 
         btnGenerateMap.setBackground(new java.awt.Color(255, 255, 255));
         btnGenerateMap.setFont(new java.awt.Font("Roboto", 1, 25)); // NOI18N
@@ -89,99 +118,17 @@ public class gridSelectionScreen extends javax.swing.JFrame {
                 btnGenerateMapActionPerformed(evt);
             }
         });
-
-        rBtnManhattan.setForeground(new java.awt.Color(255, 255, 255));
-        rBtnManhattan.setText("Manhattan");
-        rBtnManhattan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rBtnManhattanActionPerformed(evt);
-            }
-        });
-
-        rBtnEuclidean.setForeground(new java.awt.Color(255, 255, 255));
-        rBtnEuclidean.setText("Euclidean");
-        rBtnEuclidean.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rBtnEuclideanActionPerformed(evt);
-            }
-        });
-
-        rBtnChebyshev.setForeground(new java.awt.Color(255, 255, 255));
-        rBtnChebyshev.setText("Chebyshev");
-        rBtnChebyshev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rBtnChebyshevActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnLeft)
-                .addGap(133, 133, 133)
-                .addComponent(lblMapImage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRight)
-                .addGap(69, 69, 69))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(btnGenerateMap, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(rBtnManhattan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addComponent(rBtnEuclidean)
-                .addGap(133, 133, 133)
-                .addComponent(rBtnChebyshev)
-                .addGap(92, 92, 92))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(btnLeft)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel1)
-                                .addGap(43, 43, 43)
-                                .addComponent(lblMapImage))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(163, 163, 163)
-                                .addComponent(btnRight)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(102, 102, 102)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rBtnManhattan)
-                    .addComponent(rBtnEuclidean)
-                    .addComponent(rBtnChebyshev))
-                .addGap(39, 39, 39)
-                .addComponent(btnGenerateMap)
-                .addGap(24, 24, 24))
-        );
+        jPanel1.add(btnGenerateMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 139, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
 
         pack();
@@ -189,15 +136,15 @@ public class gridSelectionScreen extends javax.swing.JFrame {
 
     private void btnGenerateMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMapActionPerformed
         // once user clicks on this it will take login screen:
-        
+
         //variables to capture mapType
         int mapType = 0;
         String selctedMap = lblMapImage.getIcon().toString();
         //System.out.println(lblMapImage.getIcon().toString());
-        
+
         //mapType 1 - pictureMap
         //mapType 2 - gridMap
-        
+
         if (selctedMap.equals(pictureMap_path)) {
             System.out.println(customColors.custom_PURPLE+"User has selected picture map"+customColors.custom_RESET);
             System.out.println("");
@@ -208,28 +155,33 @@ public class gridSelectionScreen extends javax.swing.JFrame {
             System.out.println("");
             mapType = 2;
         }
-        
+
         pathFinder pathFinder = new pathFinder();
         this.dispose();
         pathFinder.pathFinderMain(mapType);
-        
-        
-        
     }//GEN-LAST:event_btnGenerateMapActionPerformed
 
-    //methods to perform the slider actions
-    private void btnLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLeftMouseClicked
-        // this method will execute ones user press on the left arrow btn
-        if (leftPressed == false) {
-            lblMapImage.setIcon(new ImageIcon(pictureMap_path));
-        }else{
-            lblMapImage.setIcon(new ImageIcon(gridMap_path));
+    private void rBtnChebyshevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnChebyshevActionPerformed
+        // TODO add your handling code here:
+        rBtnEuclideanClicked = false;
+        rBtnManhattanClicked = false;
+        if (rBtnChebyshevClicked == false) {
+            System.out.println(customColors.custom_PURPLE+"User has selected Chebyshev distance metrics"+customColors.custom_RESET);
         }
-        
-        leftPressed = true;
-        rightPressed = false;
-        
-    }//GEN-LAST:event_btnLeftMouseClicked
+
+        rBtnChebyshevClicked = true;
+    }//GEN-LAST:event_rBtnChebyshevActionPerformed
+
+    private void rBtnEuclideanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnEuclideanActionPerformed
+        // TODO add your handling code here:
+        rBtnManhattanClicked = false;
+        rBtnChebyshevClicked = false;
+        if (rBtnEuclideanClicked == false) {
+            System.out.println(customColors.custom_PURPLE+"User has selected Euclidean distance metrics"+customColors.custom_RESET);
+        }
+
+        rBtnEuclideanClicked = true;
+    }//GEN-LAST:event_rBtnEuclideanActionPerformed
 
     private void btnRightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRightMouseClicked
         // this method will execute ones user press on the right arrow btn
@@ -238,7 +190,7 @@ public class gridSelectionScreen extends javax.swing.JFrame {
         }else{
             lblMapImage.setIcon(new ImageIcon(pictureMap_path));
         }
-        
+
         rightPressed = true;
         leftPressed = false;
     }//GEN-LAST:event_btnRightMouseClicked
@@ -250,31 +202,21 @@ public class gridSelectionScreen extends javax.swing.JFrame {
         if (rBtnManhattanClicked == false) {
             System.out.println(customColors.custom_PURPLE+"User has selected Manhattan distance metrics"+customColors.custom_RESET);
         }
-       
-       rBtnManhattanClicked = true;
+
+        rBtnManhattanClicked = true;
     }//GEN-LAST:event_rBtnManhattanActionPerformed
 
-    private void rBtnEuclideanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnEuclideanActionPerformed
-        // TODO add your handling code here:
-        rBtnManhattanClicked = false;
-        rBtnChebyshevClicked = false;
-        if (rBtnEuclideanClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Euclidean distance metrics"+customColors.custom_RESET);
+    private void btnLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLeftMouseClicked
+        // this method will execute ones user press on the left arrow btn
+        if (leftPressed == false) {
+            lblMapImage.setIcon(new ImageIcon(pictureMap_path));
+        }else{
+            lblMapImage.setIcon(new ImageIcon(gridMap_path));
         }
-        
-        rBtnEuclideanClicked = true;
-    }//GEN-LAST:event_rBtnEuclideanActionPerformed
 
-    private void rBtnChebyshevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnChebyshevActionPerformed
-        // TODO add your handling code here:
-        rBtnEuclideanClicked = false;
-        rBtnManhattanClicked = false;
-        if (rBtnChebyshevClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Chebyshev distance metrics"+customColors.custom_RESET);
-        }
-        
-        rBtnChebyshevClicked = true;
-    }//GEN-LAST:event_rBtnChebyshevActionPerformed
+        leftPressed = true;
+        rightPressed = false;
+    }//GEN-LAST:event_btnLeftMouseClicked
 
     /**
      * @param args the command line arguments
@@ -293,20 +235,21 @@ public class gridSelectionScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(gridSelectionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(gridSelectionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(gridSelectionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(gridSelectionScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new gridSelectionScreen().setVisible(true);
+                new SecondScreen().setVisible(true);
             }
         });
     }

@@ -21,7 +21,7 @@ import static jdk.nashorn.internal.objects.NativeArray.map;
 public class pathFinder {
     
     
-    private static final int WINDOW_SIZE = 700;
+    private static final int windowSize = 700;
     static int N;
     static cell[][] grid = new cell[20][20];
     static boolean[][] closed = new boolean[20][20];
@@ -175,12 +175,12 @@ public class pathFinder {
                 newCell.totalCost(parent);
                 //System.out.println("Cell : ("+ newCell.x +":"+ newCell.y+")" + newCell.totTravelCost);
                 open.add(newCell);
-                ///*
-                //StdDraw.setPenColor(StdDraw.GREEN);
-                //StdDraw.filledSquare(x + 0.5, N - y - 0.5, .25);
-                //StdDraw.setPenColor(StdDraw.BOOK_BLUE);
-                //StdDraw.square(x + 0.5, N - y - 0.5, .5);
-                //*/
+                
+                StdDraw.setPenColor(StdDraw.CYAN);
+                StdDraw.filledSquare(x + 0.5, N - y - 0.5, .25);
+                StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+                StdDraw.square(x + 0.5, N - y - 0.5, .5);
+                
             }
         } catch (IndexOutOfBoundsException e) {
 
@@ -198,7 +198,7 @@ public class pathFinder {
         N = mapGrid.length;
         
         //to set the size of the mapGrid
-        StdDraw.setCanvasSize(WINDOW_SIZE, WINDOW_SIZE); 
+        StdDraw.setCanvasSize(windowSize, windowSize); 
         
         //to generate 20 by 20 mapGrid here I am setting the y and x axis of the grid
         StdDraw.setXscale(0, N);    
@@ -268,7 +268,7 @@ public class pathFinder {
     
     
     public  static void generateMap(){
-        String mapPath = "src/map.png";
+        String mapPath = "src/images/map.png";
           int middlePoint = N/2;
           int mapWidth = N;
           

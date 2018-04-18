@@ -55,7 +55,7 @@ public class splashScreen extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("Path Finder");
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,9 +106,9 @@ public class splashScreen extends javax.swing.JFrame {
 
     private void jBtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNextActionPerformed
         // once user clicks on this, it will take the user to the next map selection screen:
-        gridSelectionScreen selectionScreen = new gridSelectionScreen();
+        SecondScreen selectionScreen = new SecondScreen();
         selectionScreen.setVisible(true);
-        this.dispose();
+        //this.dispose();
 
     }//GEN-LAST:event_jBtnNextActionPerformed
 
@@ -159,7 +159,6 @@ public class splashScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNext;
     private javax.swing.JButton jBtnNext;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCopyright;

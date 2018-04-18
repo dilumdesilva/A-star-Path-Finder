@@ -9,5 +9,5 @@
  * @author dilumdesilva
  */
 public enum DistanceMetricsType {
-    
+    NONE,MANHATTEN,EUCLIDEAN,CHEBYSHEV
 }
