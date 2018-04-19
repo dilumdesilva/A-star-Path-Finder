@@ -17,7 +17,7 @@ import static jdk.nashorn.internal.objects.NativeArray.map;
 
 /**
  *
- * @author dilumdesilva
+ * @author dilumdesilva 2016142 || w1626637
  */
 public class pathFinder {
    
@@ -136,7 +136,7 @@ public class pathFinder {
         }
     }
 
-
+     
     public static void main(String[] args) {
           pathFindertMain(2,1);
         
