@@ -19,7 +19,7 @@ import static jdk.nashorn.internal.objects.NativeArray.map;
  *
  * @author dilumdesilva 2016142 || w1626637
  */
-public class pathFinder {
+public class PathFinder {
    
     //to set the canvas gridSize to the stdDaraw 
     private static final int canvasSize = 700;
@@ -61,10 +61,10 @@ public class pathFinder {
                 StdDraw.circle(x_coordinates + 0.5, N - y_coordinates - 0.5, .45);
                 
                 System.out.println("");
-                System.out.println(customColors.custom_GREEN+"Captured x coordinates of the startingcell = " + x +" --> "+x_coordinates + customColors.custom_RESET);
-                System.out.println(customColors.custom_GREEN+"Captured y coordinates of the startingcell= " + y +" --> "+y_coordinates + customColors.custom_RESET);
+                System.out.println(CustomColors.custom_GREEN+"Captured x coordinates of the startingcell = " + x +" --> "+x_coordinates + CustomColors.custom_RESET);
+                System.out.println(CustomColors.custom_GREEN+"Captured y coordinates of the startingcell= " + y +" --> "+y_coordinates + CustomColors.custom_RESET);
                 
-                System.out.println(customColors.custom_GREEN+"Travel cost of the starting cell : "+startingCell.totTravelCost + customColors.custom_RESET);
+                System.out.println(CustomColors.custom_GREEN+"Travel cost of the starting cell : "+startingCell.totTravelCost + CustomColors.custom_RESET);
 
             } else if (endingCell == null) {
                 //ending Cell related stuff
@@ -81,9 +81,9 @@ public class pathFinder {
                 StdDraw.circle(x_coordinates + 0.5, N - y_coordinates - 0.5, .45);
                 
                 System.out.println("");
-                System.out.println(customColors.custom_RED+"Captured x coordinates of the endingcell= " + x +" --> "+x_coordinates + customColors.custom_RESET);
-                System.out.println(customColors.custom_RED+"Captured y coordinates of the endingcell= " + y +" --> "+y_coordinates + customColors.custom_RESET);
-                System.out.println(customColors.custom_RED+"Travel cost of the ending cell : "+endingCell.totTravelCost + customColors.custom_RESET);
+                System.out.println(CustomColors.custom_RED+"Captured x coordinates of the endingcell= " + x +" --> "+x_coordinates + CustomColors.custom_RESET);
+                System.out.println(CustomColors.custom_RED+"Captured y coordinates of the endingcell= " + y +" --> "+y_coordinates + CustomColors.custom_RESET);
+                System.out.println(CustomColors.custom_RED+"Travel cost of the ending cell : "+endingCell.totTravelCost + CustomColors.custom_RESET);
                 
                 System.out.println("");
                 
@@ -108,8 +108,8 @@ public class pathFinder {
         double preb = N - pathCell.y - 0.5;
         
         System.out.println("");
-        System.out.println(customColors.custom_BLUE + "Summary of the path related cells"+ customColors.custom_RESET);
-        System.out.println(customColors.custom_BLUE +"---------------------------------"+ customColors.custom_RESET);
+        System.out.println(CustomColors.custom_BLUE + "Summary of the path related cells"+ CustomColors.custom_RESET);
+        System.out.println(CustomColors.custom_BLUE +"---------------------------------"+ CustomColors.custom_RESET);
         
         for (int i = 1; i < pathHolder.size(); i++) {
             pathCell = pathHolder.get(i);
@@ -127,9 +127,9 @@ public class pathFinder {
                         +"\n"
                         +" End Cell: (" + endingCell.x + " " + endingCell.y + ")"
                         +"\n"
-                        + customColors.custom_PURPLE+" Heuristic Cost: " + pathCell.h_cost + customColors.custom_RESET
+                        + CustomColors.custom_PURPLE+" Heuristic Cost: " + pathCell.h_cost + CustomColors.custom_RESET
                         +"\n"
-                        + customColors.custom_PURPLE+" Travel Cost: " + pathCell.totTravelCost + customColors.custom_RESET);
+                        + CustomColors.custom_PURPLE+" Travel Cost: " + pathCell.totTravelCost + CustomColors.custom_RESET);
                 
                 System.out.println("");
             }
@@ -138,15 +138,17 @@ public class pathFinder {
 
      
     public static void main(String[] args) {
-          pathFindertMain(2,1);
+          pathFindertMain(2,1,'M');
         
     }
     
     
-    public static void pathFindertMain(int userSelectedMapType, int userSelectedMapSize){
+    public static void pathFindertMain(int userSelectedMapType, int userSelectedMapSize, char distanceMetricsType ){
         
-        //mapSize 1 - twenty by twenty map
-        //mapSize 2 - fourty by fourty map
+        //mapSize 20 - twenty by twenty map
+        //mapSize 40 - fourty by fourty map
+        //mapSize 80 - eighty by eighty map
+        
             
         //to capture the size of the mapGrid array according to what user has selected
         map = MapGenerator.getMap(userSelectedMapSize);
@@ -174,8 +176,21 @@ public class pathFinder {
                 break;
         }
         
+        switch(distanceMetricsType){
+            case 'M':
+                System.out.println("User has selcted MANHATTEN distance metrics");
+                break;
+            case 'E':
+                System.out.println("User has selcted EUCLIDEAN distance metrics");
+                break;
+            case 'C':
+                System.out.println("User has selcted CHEBYSHEV distance metrics");
+                break;
+            
+        }
+        
         try{
-            Thread mouseInteractionThread = new Thread(new mouseInteraction(N));
+            Thread mouseInteractionThread = new Thread(new MouseInteraction(N));
             mouseInteractionThread.setDaemon(true);
             mouseInteractionThread.start();
         }catch (IllegalThreadStateException e) {

@@ -12,25 +12,31 @@ import javax.swing.ImageIcon;
  * @author dilumdesilva
  */
 public class SecondScreen extends javax.swing.JFrame {
-    
+
     //String variables to hold the path of the images
     ///Users/dilumdesilva/Workspaces/IIT_Workspace/Algorithms/CW/ThirdAttempt/PathFinder/src/images/mapPic.png
     String pictureMap_path = "src/images/mapPic.png";
     String gridMap_path = "src/images/gridPic.png";
-    int counterLeft = 1;
-    int counterRight = 1;
     
-    boolean leftPressed = false;
-    boolean rightPressed = false;
+    private boolean leftPressed = false;
+    private boolean rightPressed = false;
     
-    int selectedDistanceMetrics = 0;
-    boolean rBtnEuclideanClicked, rBtnManhattanClicked, rBtnChebyshevClicked  = false;
+    private int mapType = 0;
+    private String selctedMap;
+    private char distanceMetricsType;
 
     /**
      * Creates new form SeconScreen
      */
     public SecondScreen() {
         initComponents();
+        
+        //making unselected all the radio buttins at the begining.
+        rBtnManhattan.setSelected(false);
+        rBtnEuclidean.setSelected(false);
+        rBtnChebyshev.setSelected(false);
+        
+        
     }
 
     /**
@@ -50,7 +56,7 @@ public class SecondScreen extends javax.swing.JFrame {
         btnRight = new javax.swing.JLabel();
         rBtnEuclidean = new javax.swing.JRadioButton();
         rBtnChebyshev = new javax.swing.JRadioButton();
-        btnGenerateMap = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -109,16 +115,16 @@ public class SecondScreen extends javax.swing.JFrame {
         });
         jPanel1.add(rBtnChebyshev, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
 
-        btnGenerateMap.setBackground(new java.awt.Color(255, 255, 255));
-        btnGenerateMap.setFont(new java.awt.Font("Roboto", 1, 25)); // NOI18N
-        btnGenerateMap.setForeground(new java.awt.Color(13, 127, 137));
-        btnGenerateMap.setText("Generate");
-        btnGenerateMap.addActionListener(new java.awt.event.ActionListener() {
+        btnNext.setBackground(new java.awt.Color(255, 255, 255));
+        btnNext.setFont(new java.awt.Font("Roboto", 1, 25)); // NOI18N
+        btnNext.setForeground(new java.awt.Color(13, 127, 137));
+        btnNext.setText("Next");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerateMapActionPerformed(evt);
+                btnNextActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerateMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 139, -1));
+        jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 139, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,53 +140,53 @@ public class SecondScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGenerateMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMapActionPerformed
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // once user clicks on this it will take login screen:
 
         //variables to capture mapType
-        int mapType = 0;
-        String selctedMap = lblMapImage.getIcon().toString();
+        setSelctedMap(lblMapImage.getIcon().toString());
         //System.out.println(lblMapImage.getIcon().toString());
 
         //mapType 1 - pictureMap
         //mapType 2 - gridMap
 
         if (selctedMap.equals(pictureMap_path)) {
-            System.out.println(customColors.custom_PURPLE+"User has selected picture map"+customColors.custom_RESET);
+            System.out.println(CustomColors.custom_PURPLE+"User has selected picture map"+CustomColors.custom_RESET);
             System.out.println("");
-            mapType = 1;
+            setMapType(1);
         }
         else if(selctedMap.equals(gridMap_path)){
-            System.out.println(customColors.custom_PURPLE+"User has selected grid map"+customColors.custom_RESET);
+            System.out.println(CustomColors.custom_PURPLE+"User has selected grid map"+CustomColors.custom_RESET);
             System.out.println("");
-            mapType = 2;
+            setMapType(2);
         }
 
-        pathFinder pathFinder = new pathFinder();
+        ThirdScreen objThirdScreen = new ThirdScreen();
+        objThirdScreen.setMapType(mapType);
+        objThirdScreen.setDistanceMetricsType(distanceMetricsType);
+        objThirdScreen.setVisible(true);
         this.dispose();
         //pathFinder.pathFinderMain(mapType);
-    }//GEN-LAST:event_btnGenerateMapActionPerformed
+    }//GEN-LAST:event_btnNextActionPerformed
 
     private void rBtnChebyshevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnChebyshevActionPerformed
-        // TODO add your handling code here:
-        rBtnEuclideanClicked = false;
-        rBtnManhattanClicked = false;
-        if (rBtnChebyshevClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Chebyshev distance metrics"+customColors.custom_RESET);
+        if (rBtnChebyshev.isSelected()) {
+            //C - CHEBYSHEV
+            setDistanceMetricsType('C');
+            
+            rBtnManhattan.setSelected(false);
+            rBtnEuclidean.setSelected(false);
         }
-
-        rBtnChebyshevClicked = true;
     }//GEN-LAST:event_rBtnChebyshevActionPerformed
 
     private void rBtnEuclideanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnEuclideanActionPerformed
-        // TODO add your handling code here:
-        rBtnManhattanClicked = false;
-        rBtnChebyshevClicked = false;
-        if (rBtnEuclideanClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Euclidean distance metrics"+customColors.custom_RESET);
+        if (rBtnEuclidean.isSelected()) {
+            //E - EUCLIDEAN
+            setDistanceMetricsType('E');
+            
+            rBtnManhattan.setSelected(false);
+            rBtnChebyshev.setSelected(false);
         }
-
-        rBtnEuclideanClicked = true;
     }//GEN-LAST:event_rBtnEuclideanActionPerformed
 
     private void btnRightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRightMouseClicked
@@ -196,14 +202,12 @@ public class SecondScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRightMouseClicked
 
     private void rBtnManhattanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnManhattanActionPerformed
-        // TODO add your handling code here
-        rBtnEuclideanClicked = false;
-        rBtnChebyshevClicked = false;
-        if (rBtnManhattanClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Manhattan distance metrics"+customColors.custom_RESET);
+        if (rBtnManhattan.isSelected()) {
+            //M - MANHATTEN
+            setDistanceMetricsType('M');
+            rBtnChebyshev.setSelected(false);
+            rBtnEuclidean.setSelected(false);
         }
-
-        rBtnManhattanClicked = true;
     }//GEN-LAST:event_rBtnManhattanActionPerformed
 
     private void btnLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLeftMouseClicked
@@ -255,8 +259,8 @@ public class SecondScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerateMap;
     private javax.swing.JLabel btnLeft;
+    private javax.swing.JButton btnNext;
     private javax.swing.JLabel btnRight;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -265,4 +269,46 @@ public class SecondScreen extends javax.swing.JFrame {
     private javax.swing.JRadioButton rBtnEuclidean;
     private javax.swing.JRadioButton rBtnManhattan;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the mapType
+     */
+    public int getMapType() {
+        return mapType;
+    }
+
+    /**
+     * @param mapType the mapType to set
+     */
+    public void setMapType(int mapType) {
+        this.mapType = mapType;
+    }
+
+    /**
+     * @return the selctedMap
+     */
+    public String getSelctedMap() {
+        return selctedMap;
+    }
+
+    /**
+     * @param selctedMap the selctedMap to set
+     */
+    public void setSelctedMap(String selctedMap) {
+        this.selctedMap = selctedMap;
+    }
+    
+    /**
+     * @return the distanceMetricsType
+     */
+    public char getDistanceMetricsType() {
+        return distanceMetricsType;
+    }
+
+    /**
+     * @param distanceMetricsType the distanceMetricsType to set
+     */
+    public void setDistanceMetricsType(char distanceMetricsType) {
+        this.distanceMetricsType = distanceMetricsType;
+    }
 }

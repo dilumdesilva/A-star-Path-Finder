@@ -15,11 +15,11 @@ import java.util.logging.Logger;
  *
  * @author dilumdesilva
  */
-public class mouseInteraction implements Runnable {
+public class MouseInteraction implements Runnable {
     
     private boolean pressedOnce = false;
     private int N;
-    public mouseInteraction(int N){
+    public MouseInteraction(int N){
         this.N = N;
     }
     
@@ -28,7 +28,7 @@ public class mouseInteraction implements Runnable {
         while (true) {
             if (StdDraw.mousePressed()) {
                 if (!pressedOnce) {
-                    pathFinder.mouseClicked((StdDraw.mouseX()), (N - StdDraw.mouseY()));
+                    PathFinder.mouseClicked((StdDraw.mouseX()), (N - StdDraw.mouseY()));
                     pressedOnce = true;
                 }
             } else {
@@ -37,7 +37,7 @@ public class mouseInteraction implements Runnable {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
-                Logger.getLogger(mouseInteraction.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MouseInteraction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

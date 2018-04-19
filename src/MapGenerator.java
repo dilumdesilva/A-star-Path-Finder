@@ -79,9 +79,11 @@ public class MapGenerator {
 
     public static int[][] getMap(int mapSize) {
        switch(mapSize){
-           case 1 : 
+           case 20 : 
                 return mapTwentyByTwenty;
-           case 2 :
+           case 40 :
+               return mapFourtyByFourty;
+           case 80 :
                return mapFourtyByFourty;
             default:
                 return mapTwentyByTwenty;

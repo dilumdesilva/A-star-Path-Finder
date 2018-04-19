@@ -8,12 +8,12 @@
  *
  * @author dilumdesilva
  */
-public class splashScreen extends javax.swing.JFrame {
+public class SplashScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form splashScreen
      */
-    public splashScreen() {
+    public SplashScreen() {
         initComponents();
     }
 
@@ -108,7 +108,7 @@ public class splashScreen extends javax.swing.JFrame {
         // once user clicks on this, it will take the user to the next map selection screen:
         SecondScreen selectionScreen = new SecondScreen();
         selectionScreen.setVisible(true);
-        //this.dispose();
+        this.dispose();
 
     }//GEN-LAST:event_jBtnNextActionPerformed
 
@@ -129,31 +129,32 @@ public class splashScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(splashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(splashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(splashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(splashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //opening msg in the console window
         System.out.println("");
-        System.out.println(customColors.custom_CYAN + "\tP A T H   F I N D E R  "
-                +customColors.custom_RESET+ customColors.custom_RED + "A *"+customColors.custom_RESET);
+        System.out.println(CustomColors.custom_CYAN + "\tP A T H   F I N D E R  "
+                +CustomColors.custom_RESET+ CustomColors.custom_RED + "A *"+CustomColors.custom_RESET);
         System.out.println("");
-        System.out.println(customColors.custom_GREEN+"Design & Develop by Dilum De Silva"+customColors.custom_RESET);
-        System.out.println(customColors.custom_GREEN+"IIT NO - 2016142"+customColors.custom_RESET);
-        System.out.println(customColors.custom_GREEN+"UoW NO - w1626637"+customColors.custom_RESET);
+        System.out.println(CustomColors.custom_GREEN+"Design & Develop by Dilum De Silva"+CustomColors.custom_RESET);
+        System.out.println(CustomColors.custom_GREEN+"IIT NO - 2016142"+CustomColors.custom_RESET);
+        System.out.println(CustomColors.custom_GREEN+"UoW NO - w1626637"+CustomColors.custom_RESET);
         
         System.out.println("");
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new splashScreen().setVisible(true);
+                new SplashScreen().setVisible(true);
             }
         });
     }

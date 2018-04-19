@@ -1,4 +1,4 @@
-public class customColors {
+public class CustomColors {
     public static final String custom_BLACK = "\u001B[30m";
     public static final String custom_RED = "\u001B[31m";
     public static final String custom_GREEN = "\u001B[32m";

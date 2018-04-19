@@ -199,17 +199,17 @@ public class gridSelectionScreen extends javax.swing.JFrame {
         //mapType 2 - gridMap
         
         if (selctedMap.equals(pictureMap_path)) {
-            System.out.println(customColors.custom_PURPLE+"User has selected picture map"+customColors.custom_RESET);
+            System.out.println(CustomColors.custom_PURPLE+"User has selected picture map"+CustomColors.custom_RESET);
             System.out.println("");
             mapType = 1;
         }
         else if(selctedMap.equals(gridMap_path)){
-            System.out.println(customColors.custom_PURPLE+"User has selected grid map"+customColors.custom_RESET);
+            System.out.println(CustomColors.custom_PURPLE+"User has selected grid map"+CustomColors.custom_RESET);
             System.out.println("");
             mapType = 2;
         }
         
-        pathFinder pathFinder = new pathFinder();
+        PathFinder pathFinder = new PathFinder();
         this.dispose();
         //pathFinder.pathFinderMain(mapType);
         
@@ -248,7 +248,7 @@ public class gridSelectionScreen extends javax.swing.JFrame {
         rBtnEuclideanClicked = false;
         rBtnChebyshevClicked = false;
         if (rBtnManhattanClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Manhattan distance metrics"+customColors.custom_RESET);
+            System.out.println(CustomColors.custom_PURPLE+"User has selected Manhattan distance metrics"+CustomColors.custom_RESET);
         }
        
        rBtnManhattanClicked = true;
@@ -259,7 +259,7 @@ public class gridSelectionScreen extends javax.swing.JFrame {
         rBtnManhattanClicked = false;
         rBtnChebyshevClicked = false;
         if (rBtnEuclideanClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Euclidean distance metrics"+customColors.custom_RESET);
+            System.out.println(CustomColors.custom_PURPLE+"User has selected Euclidean distance metrics"+CustomColors.custom_RESET);
         }
         
         rBtnEuclideanClicked = true;
@@ -270,7 +270,7 @@ public class gridSelectionScreen extends javax.swing.JFrame {
         rBtnEuclideanClicked = false;
         rBtnManhattanClicked = false;
         if (rBtnChebyshevClicked == false) {
-            System.out.println(customColors.custom_PURPLE+"User has selected Chebyshev distance metrics"+customColors.custom_RESET);
+            System.out.println(CustomColors.custom_PURPLE+"User has selected Chebyshev distance metrics"+CustomColors.custom_RESET);
         }
         
         rBtnChebyshevClicked = true;
