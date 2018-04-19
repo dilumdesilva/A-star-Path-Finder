@@ -20,12 +20,16 @@ import static jdk.nashorn.internal.objects.NativeArray.map;
  * @author dilumdesilva 2016142 || w1626637
  */
 public class PathFinder {
-   
+
     //to set the canvas gridSize to the stdDaraw 
     private static final int canvasSize = 700;
     static int N;
     private static Cell startingCell,endingCell;
     private static int[][] map;
+    
+    private static char dMetricsType = 'N';
+    
+    
     
     
     /**
@@ -100,8 +104,27 @@ public class PathFinder {
         //sendiing the selected pathHolder as a parameter
         AstarBuilder astarBuilder = new AstarBuilder(map);
         
+        ArrayList<Cell> pathHolder = new ArrayList<>();
         
-        ArrayList<Cell> pathHolder = astarBuilder.generatePath(startingCell, endingCell, DistanceMetricsType.MANHATTEN);
+        switch(getdMetricsType()){
+            case 'M':
+                pathHolder = astarBuilder.generatePath(startingCell, endingCell, DistanceMetricsType.MANHATTEN);
+                System.out.println("User has selcted MANHATTEN distance metrics");
+                break;
+            case 'E':
+                pathHolder = astarBuilder.generatePath(startingCell, endingCell, DistanceMetricsType.EUCLIDEAN);
+                System.out.println("User has selcted EUCLIDEAN distance metrics");
+                break;
+            case 'C':
+                pathHolder = astarBuilder.generatePath(startingCell, endingCell, DistanceMetricsType.CHEBYSHEV);
+                System.out.println("User has selcted CHEBYSHEV distance metrics");
+                break;
+                
+        }
+        
+        //ArrayList<Cell> pathHolder = astarBuilder.generatePath(startingCell, endingCell, DistanceMetricsType.MANHATTEN);
+        
+        
         Cell pathCell;
         pathCell = pathHolder.get(0);
         double prea = pathCell.x + 0.5;
@@ -137,13 +160,13 @@ public class PathFinder {
     }
 
      
-    public static void main(String[] args) {
-          pathFindertMain(2,1,'M');
-        
-    }
+//    public static void main(String[] args) {
+//          pathFindertMain(2,1,'M');
+//        
+//    }
     
     
-    public static void pathFindertMain(int userSelectedMapType, int userSelectedMapSize, char distanceMetricsType ){
+    public void pathFindertMain(int userSelectedMapType, int userSelectedMapSize, char distanceMetricsType ){
         
         //mapSize 20 - twenty by twenty map
         //mapSize 40 - fourty by fourty map
@@ -178,13 +201,16 @@ public class PathFinder {
         
         switch(distanceMetricsType){
             case 'M':
-                System.out.println("User has selcted MANHATTEN distance metrics");
+                setdMetricsType('M');
+                //System.out.println("User has selcted MANHATTEN distance metrics");
                 break;
             case 'E':
-                System.out.println("User has selcted EUCLIDEAN distance metrics");
+                setdMetricsType('E');
+                //System.out.println("User has selcted EUCLIDEAN distance metrics");
                 break;
             case 'C':
-                System.out.println("User has selcted CHEBYSHEV distance metrics");
+                setdMetricsType('C');
+                //System.out.println("User has selcted CHEBYSHEV distance metrics");
                 break;
             
         }
@@ -248,7 +274,19 @@ public class PathFinder {
     }
 
   
-
+    /**
+     * @return the dMetricsType
+     */
+    public static char getdMetricsType() {
+        return dMetricsType;
+    }
+    
+    /**
+     * @param dMetricsType the dMetricsType to set
+     */
+    public void setdMetricsType(char dMetricsType) {
+        this.dMetricsType = dMetricsType;
+    }
     
 }
 
