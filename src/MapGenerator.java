@@ -77,8 +77,8 @@ public class MapGenerator {
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5},//20
     };
 
-    public static int[][] getMap(int mapType) {
-       switch(mapType){
+    public static int[][] getMap(int mapSize) {
+       switch(mapSize){
            case 1 : 
                 return mapTwentyByTwenty;
            case 2 :
