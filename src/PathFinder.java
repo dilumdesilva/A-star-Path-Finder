@@ -119,6 +119,10 @@ public class PathFinder {
                 pathHolder = astarBuilder.generatePath(startingCell, endingCell, DistanceMetricsType.CHEBYSHEV);
                 System.out.println("User has selcted CHEBYSHEV distance metrics");
                 break;
+            case 'N':
+                pathHolder = astarBuilder.generatePath(startingCell, endingCell, DistanceMetricsType.NONE);
+                System.out.println("User has selcted no distance metrics");
+                break;
                 
         }
         
@@ -211,6 +215,10 @@ public class PathFinder {
             case 'C':
                 setdMetricsType('C');
                 //System.out.println("User has selcted CHEBYSHEV distance metrics");
+                break;
+                
+            case 'N':
+                setdMetricsType('N');
                 break;
             
         }
@@ -370,6 +378,8 @@ class AstarBuilder{
      * @param heuristic - to track of the distance metrics type for the heuristic calculations
      * @return arraylist which holds the pathHolder
      */
+    
+    long startTime = System.nanoTime();
     public ArrayList<Cell> generatePath( Cell startingCell, Cell endingCell, DistanceMetricsType heuristic){
         this.endingCell = endingCell;
         this.heuristic = heuristic;
@@ -410,6 +420,7 @@ class AstarBuilder{
              * Until it visits the it will retrieved and removed the head/cell
              * If it couldn't find a head/cell or if the queue is empty it will throws a NoSuchElement Exception 
              */
+            
             boolean flag = false;
             
             while (!flag) {
@@ -426,7 +437,9 @@ class AstarBuilder{
             }
         }
         
-        System.out.println(recentCell.totTravelCost);
+        long finalTime = System.nanoTime();
+        System.out.println("Final cost: "+recentCell.totTravelCost);
+        
         
         //keep track of every valid recent cell as a path cell
         Cell pathCell = recentCell;
@@ -437,6 +450,11 @@ class AstarBuilder{
             
             pathCell = pathCell.parent;
         }
+        
+        long elapsedTime = (finalTime-startTime);
+        long elapsedTimeInMiliS = elapsedTime/1000000;
+        
+        System.out.println("Elapsed Time: "+elapsedTimeInMiliS+"ms");
         
         //once all the path cells are stored this will return a list of path cells
         return pathHolder;
@@ -450,13 +468,14 @@ class AstarBuilder{
                 c.totalCost(parent,heuristic,endingCell,d);
                 cellCostQueue.add(c);
                 
-                StdDraw.setPenColor(StdDraw.CYAN);
-                StdDraw.filledSquare(x + 0.5, N - y - 0.5, .25);
-                StdDraw.setPenColor(StdDraw.BOOK_BLUE);
-                StdDraw.square(x + 0.5, N - y - 0.5, .5);
+                //uncomment this to draw the visited cell 
+//                StdDraw.setPenColor(StdDraw.CYAN);
+//                StdDraw.filledSquare(x + 0.5, N - y - 0.5, .25);
+//                StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+//                StdDraw.square(x + 0.5, N - y - 0.5, .5);
             }
         } catch (IndexOutOfBoundsException e) {
-            //TODO : Handel the exception
+            //System.out.println(e);
         }
     }
 }

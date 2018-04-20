@@ -1,5 +1,7 @@
 
+import java.awt.Component;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -35,6 +37,7 @@ public class SecondScreen extends javax.swing.JFrame {
         rBtnManhattan.setSelected(false);
         rBtnEuclidean.setSelected(false);
         rBtnChebyshev.setSelected(false);
+        radioButtonNone.setSelected(false);
         
         
     }
@@ -57,6 +60,7 @@ public class SecondScreen extends javax.swing.JFrame {
         rBtnEuclidean = new javax.swing.JRadioButton();
         rBtnChebyshev = new javax.swing.JRadioButton();
         btnNext = new javax.swing.JButton();
+        radioButtonNone = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -87,7 +91,7 @@ public class SecondScreen extends javax.swing.JFrame {
                 rBtnManhattanActionPerformed(evt);
             }
         });
-        jPanel1.add(rBtnManhattan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
+        jPanel1.add(rBtnManhattan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
 
         btnRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         btnRight.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,7 +108,7 @@ public class SecondScreen extends javax.swing.JFrame {
                 rBtnEuclideanActionPerformed(evt);
             }
         });
-        jPanel1.add(rBtnEuclidean, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
+        jPanel1.add(rBtnEuclidean, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
         rBtnChebyshev.setForeground(new java.awt.Color(255, 255, 255));
         rBtnChebyshev.setText("Chebyshev");
@@ -113,7 +117,7 @@ public class SecondScreen extends javax.swing.JFrame {
                 rBtnChebyshevActionPerformed(evt);
             }
         });
-        jPanel1.add(rBtnChebyshev, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
+        jPanel1.add(rBtnChebyshev, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, -1, -1));
 
         btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setFont(new java.awt.Font("Roboto", 1, 25)); // NOI18N
@@ -125,6 +129,15 @@ public class SecondScreen extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 139, -1));
+
+        radioButtonNone.setForeground(new java.awt.Color(255, 255, 255));
+        radioButtonNone.setText("None");
+        radioButtonNone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonNoneActionPerformed(evt);
+            }
+        });
+        jPanel1.add(radioButtonNone, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,13 +155,15 @@ public class SecondScreen extends javax.swing.JFrame {
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // once user clicks on this it will take login screen:
-
+        boolean valid = false;
         //variables to capture mapType
         setSelctedMap(lblMapImage.getIcon().toString());
         //System.out.println(lblMapImage.getIcon().toString());
 
         //mapType 1 - pictureMap
         //mapType 2 - gridMap
+        
+        
 
         if (selctedMap.equals(pictureMap_path)) {
             System.out.println(CustomColors.custom_PURPLE+"User has selected picture map"+CustomColors.custom_RESET);
@@ -159,6 +174,10 @@ public class SecondScreen extends javax.swing.JFrame {
             System.out.println(CustomColors.custom_PURPLE+"User has selected grid map"+CustomColors.custom_RESET);
             System.out.println("");
             setMapType(2);
+        }else{
+            Component frame = null;
+            JOptionPane.showMessageDialog(frame, "Sorry, please select a valid map type");
+            //vaild = true;
         }
 
         ThirdScreen objThirdScreen = new ThirdScreen();
@@ -176,6 +195,7 @@ public class SecondScreen extends javax.swing.JFrame {
             
             rBtnManhattan.setSelected(false);
             rBtnEuclidean.setSelected(false);
+            radioButtonNone.setSelected(false);
         }
     }//GEN-LAST:event_rBtnChebyshevActionPerformed
 
@@ -186,6 +206,7 @@ public class SecondScreen extends javax.swing.JFrame {
             
             rBtnManhattan.setSelected(false);
             rBtnChebyshev.setSelected(false);
+            radioButtonNone.setSelected(false);
         }
     }//GEN-LAST:event_rBtnEuclideanActionPerformed
 
@@ -207,6 +228,7 @@ public class SecondScreen extends javax.swing.JFrame {
             setDistanceMetricsType('M');
             rBtnChebyshev.setSelected(false);
             rBtnEuclidean.setSelected(false);
+            radioButtonNone.setSelected(false);
         }
     }//GEN-LAST:event_rBtnManhattanActionPerformed
 
@@ -221,6 +243,17 @@ public class SecondScreen extends javax.swing.JFrame {
         leftPressed = true;
         rightPressed = false;
     }//GEN-LAST:event_btnLeftMouseClicked
+
+    private void radioButtonNoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonNoneActionPerformed
+        if (radioButtonNone.isSelected()) {
+            //M - MANHATTEN
+            setDistanceMetricsType('N');
+            rBtnChebyshev.setSelected(false);
+            rBtnEuclidean.setSelected(false);
+            rBtnManhattan.setSelected(false);
+            //radioButtonNone.setSelected(false);
+        }
+    }//GEN-LAST:event_radioButtonNoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +301,7 @@ public class SecondScreen extends javax.swing.JFrame {
     private javax.swing.JRadioButton rBtnChebyshev;
     private javax.swing.JRadioButton rBtnEuclidean;
     private javax.swing.JRadioButton rBtnManhattan;
+    private javax.swing.JRadioButton radioButtonNone;
     // End of variables declaration//GEN-END:variables
 
     /**

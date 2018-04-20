@@ -12,7 +12,7 @@ public enum TravelType {
     
    /**
     * D - D Travels
- S - S Travels
+    * S - S Travels
     */
    D,S 
 }
