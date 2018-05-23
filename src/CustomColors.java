@@ -7,6 +7,7 @@ public class CustomColors {
     public static final String custom_PURPLE = "\u001B[35m";
     public static final String custom_CYAN = "\u001B[36m";
     public static final String custom_WHITE = "\u001B[37m";
+    
     //Reset code
     public static final String custom_RESET = "\u001B[0m";
 }

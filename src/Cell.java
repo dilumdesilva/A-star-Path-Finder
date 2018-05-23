@@ -26,7 +26,7 @@ public class Cell {
         if (parent != null) {
             this.parent = parent;
             if( travelType == TravelType.D ){
-                this.totTravelCost = this.cost * 1.414 + parent.totTravelCost;
+                this.totTravelCost = this.cost * 1 + parent.totTravelCost;
             }else{
                 this.totTravelCost = this.cost + parent.totTravelCost;
             }
